@@ -32,7 +32,7 @@ function agregarCurso (req, res) {
 }
 
 function getCursos (req, res) {
-  Curso.find({}, (error, response) => {
+  Curso.find({estado:'activo'}, (error, response) => {
     if (error) {
       res.status(500).send(error)
     } else {

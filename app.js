@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 
 const userRouter = require('./routes/user.router')
 const cursoRouter = require('./routes/curso.router')
+const matriculaRouter = require('./routes/matricula.router')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -26,6 +27,8 @@ app.use((req, res, next) => {
 
 app.use('/api', userRouter)
 app.use('/api', cursoRouter)
+app.use('/api', matriculaRouter)
+
 
 
 module.exports = app
