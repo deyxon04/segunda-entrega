@@ -31,4 +31,13 @@ function agregarCurso (req, res) {
   })
 }
 
-module.exports = { agregarCurso }
+function getCursos (req, res) {
+  Curso.find({}, (error, response) => {
+    if (error) {
+      res.status(500).send(error)
+    } else {
+      res.status(200).send(response)
+    }
+  })
+}
+module.exports = { agregarCurso, getCursos }
