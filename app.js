@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
 const userRouter = require('./routes/user.router')
+const cursoRouter = require('./routes/curso.router')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -24,5 +25,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api', userRouter)
+app.use('/api', cursoRouter)
+
 
 module.exports = app

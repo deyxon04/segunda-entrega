@@ -8,6 +8,6 @@ app.listen(keys.port, (error, response) => {
     throw error
   } else {
     console.log('server on port ' + keys.port)
-    require('./databse/connection')
+    require('./database/connection')
   }
 })
