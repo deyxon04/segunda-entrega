@@ -2,7 +2,7 @@
 
 const Curso = require('../../models/curso')
 
-function agregarCurso (req, res) {
+function agregarCurso(req, res) {
   Curso.findOne({ idcurso: req.body.idcurso }, (error, curso) => {
     if (error) {
       res.status(500).send(error)
@@ -31,8 +31,8 @@ function agregarCurso (req, res) {
   })
 }
 
-function getCursos (req, res) {
-  Curso.find({estado:'activo'}, (error, response) => {
+function getCursos(req, res) {
+  Curso.find({ estado: 'activo' }, (error, response) => {
     if (error) {
       res.status(500).send(error)
     } else {
@@ -42,7 +42,7 @@ function getCursos (req, res) {
 }
 
 
-function getAllCursos (req, res) {
+function getAllCursos(req, res) {
   Curso.find({}, (error, response) => {
     if (error) {
       res.status(500).send(error)
@@ -51,4 +51,4 @@ function getAllCursos (req, res) {
     }
   })
 }
-module.exports = { agregarCurso, getCursos ,getAllCursos}
+module.exports = { agregarCurso, getCursos, getAllCursos }
