@@ -2,8 +2,10 @@
 
 const Matricula = require('../../models/matriculado')
 
-function addMatricula (req, res) {
-  Matricula.findOne({ documento: req.body.documento }, (error, response) => {
+function addMatricula(req, res) {  
+  console.log(req.body.curso.idcurso);
+
+  Matricula.findOne({ curso: req.body.curso.idcurso}, (error, response) => {
     if (error) {
       res.status(400).send(error)
     } else {
@@ -16,7 +18,7 @@ function addMatricula (req, res) {
           documento: parseInt(req.body.documento),
           nombre: req.body.nombre,
           correo: req.body.correo,
-          curso: req.body.curso
+          curso: req.body.curso.idcurso
         })
         matricula.save(matricula, (error, response) => {
           if (response != null) {

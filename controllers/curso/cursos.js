@@ -8,7 +8,7 @@ function agregarCurso(req, res) {
       res.status(500).send(error)
     } else {
       if (curso) {
-        res.status(200).send({ message: 'Este curso ya existe' })
+        res.status(400).send({ message: 'Este curso ya existe' })
       } else {
         const cursoStore = new Curso({
           nombrecurso: req.body.nombrecurso,
@@ -42,6 +42,7 @@ function getCursos(req, res) {
 }
 
 
+
 function getAllCursos(req, res) {
   Curso.find({}, (error, response) => {
     if (error) {
@@ -51,4 +52,16 @@ function getAllCursos(req, res) {
     }
   })
 }
-module.exports = { agregarCurso, getCursos, getAllCursos }
+
+
+function getOneCurso(req, res) {
+  Curso.find({ idcurso: req.params.id }, (error, response) => {
+    if (error) {
+      res.status(500).send(error)
+    } else {
+      res.status(200).send(response)
+    }
+  })
+}
+
+module.exports = { agregarCurso, getCursos, getAllCursos, getOneCurso }
