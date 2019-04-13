@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
-// Configurar cabeceras y cors
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header(
