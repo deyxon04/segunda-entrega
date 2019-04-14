@@ -64,8 +64,8 @@ function removeCursoMatriculado(req,res){
 
 //J-9HU
 function getInfoMatriculadosPorCurso(req,res){
-  console.log(req.params.curso)
-  Matricula.find({curso:req.params.curso},(error, response) => {
+  console.log(req.body.curso)
+  Matricula.find({curso:req.body.curso},(error, response) => {
     if (error) {
       return res.status(500).send(error)
   } else {
