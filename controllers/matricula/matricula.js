@@ -2,10 +2,9 @@
 
 const Matricula = require('../../models/matriculado')
 
-function addMatricula(req, res) {  
-  console.log(req.body.curso.idcurso);
-
-  Matricula.findOne({ curso: req.body.curso.idcurso}, (error, response) => {
+function addMatricula(req, res) {
+  console.log(req.body.curso);
+  Matricula.findOne({ idcurso: req.body.curso.idcurso }, (error, response) => {
     if (error) {
       res.status(400).send(error)
     } else {
@@ -18,7 +17,8 @@ function addMatricula(req, res) {
           documento: parseInt(req.body.documento),
           nombre: req.body.nombre,
           correo: req.body.correo,
-          curso: req.body.curso.idcurso
+          curso: req.body.curso,
+          idcurso: req.body.curso.idcurso
         })
         matricula.save(matricula, (error, response) => {
           if (response != null) {
@@ -32,6 +32,33 @@ function addMatricula(req, res) {
   })
 }
 
+function getMatriculaByDocument(req, res) {
+  Matricula.find({ documento: req.params.documento }, (error, response) => {
+    if (error) {
+      res.status(500).send(error)
+    } else {
+      res.status(200).send(response)
+    }
+  })
+}
+function removeCursoMatriculado(req, res) {
+  Matricula.findOneAndDelete({ idcurso: req.params.idcurso }, (error, response) => {
+    if (error) {
+      return res.status(500).send(error)
+    } else {
+      if (!response) {
+        res
+          .status(400)
+          .send({ message: 'no tiene matricula en el curso' })
+      } else {
+        return res.status(200).send({ message: 'Eliminado correctamente' })
+      }
+    }
+  })
+}
+
 module.exports = {
-  addMatricula
+  addMatricula,
+  getMatriculaByDocument,
+  removeCursoMatriculado
 }
