@@ -23,7 +23,7 @@ async function addUser (req, res) {
         nombre: req.body.nombre,
         correo: req.body.correo,
         telefono: parseInt(req.body.telefono),
-        rol: 'aspirante'
+        rol: req.body.rol
       })
       user.save(user, (error, response) => {
         if (response) {
@@ -44,7 +44,23 @@ async function addUser (req, res) {
   }
 }
 
+//J-8
+function getUserRandom(req,res,rol,callback){
+  User.count({rol:rol}).exec((error,count)=>{
+   var random = Math.floor(Math.random()*count)
+  User.findOne({rol:rol},{'documento':1}).skip(random).exec((error,result)=>{
+    if (error) {
+      return res.status(500).send(error)
+  } else if(!result){
+    return res.status(400).send({ message: 'no hay docentes inscritos' })
+  }else{
+     callback(result)
+  }
+  })
+})}
+
 module.exports = {
   login,
-  addUser
+  addUser,
+  getUserRandom
 }

@@ -7,7 +7,7 @@ const User = new Schema({
   nombre: { type: String, required: true },
   correo: { type: String, required: true },
   telefono: { type: Number, required: true },
-  rol: { type: String }
+  rol: { type: String,  default:'aspirante'}
 })
 
 module.exports = mongoose.model('User', User)

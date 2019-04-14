@@ -10,7 +10,6 @@ const Curso = new Schema({
   modalidad: { type: String, required: true },
   intensidad: { type: Number, required: true },
   estado: { type: String, default:"disponible"}
-
 })
 
 module.exports = mongoose.model('curso', Curso)

@@ -30,12 +30,55 @@ function addMatricula (req, res) {
   })
 }
 
-
+//Variable de sesion para aspirante?? 5-HU
 function getCursosMatriculados(req,res){
-  Matricula.find()
-
+  Matricula.findOne({documento: req.body.documento}, (error, response) => {
+    if (error) {
+      return res.status(500).send(error)
+    } else {
+      if (response == null) {
+        res
+          .status(200)
+          .send({ message: 'No tiene cursos matriculados' })
+  } else {
+    return res.status(200).send(response)
+}
+}})
 }
 
+//Variable de sesion para aspirante?? 5-HU
+function removeCursoMatriculado(req,res){
+  Matricula.findOneAndDelete({documento:req.body.documento,curso:req.body.curso},(error,response)=>{
+  if (error) {
+    return res.status(500).send(error)
+  } else {
+    if (!response) {
+      res
+        .status(400)
+        .send({ message: 'no tiene matricula en el curso' })
+} else {
+  return res.status(200).send(response)
+}
+}})
+}
+
+//J-9HU
+function getInfoMatriculadosPorCurso(req,res){
+  console.log(req.params.curso)
+  Matricula.find({curso:req.params.curso},(error, response) => {
+    if (error) {
+      return res.status(500).send(error)
+  } else {
+    return res.status(200).send(response)
+  }})
+}
+
+
+
+
 module.exports = {
-  addMatricula
+  addMatricula,
+  getCursosMatriculados,
+  removeCursoMatriculado,
+  getInfoMatriculadosPorCurso
 }
