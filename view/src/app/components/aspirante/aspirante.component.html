@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="text-center">Bienvenidos aspirante</h1>
+  <br>
+  <br>
+  <div class="">
+    <div class="card">
+      <h5 class="card-header">Cursos disponibles</h5>
+      <div class="card-body">
+        <div class="table-responsive ">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Valor</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of cursos">
+                <th>{{curso.idcurso}}</th>
+                <td>{{curso.nombrecurso}}</td>
+                <td>{{curso.descripcion}}</td>
+                <td>{{curso.valor}}</td>
+                <td><button class="btn btn-primary btn-sm" (click)="ngInsCurso(curso)"
+                    role="button">Inscribirse</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <br><br>
+          <div *ngIf="messageResponse" style="margin: 0% auto" class="alert alert-success text-center col-lg-4" role="alert">
+           {{ messageResponse.message}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

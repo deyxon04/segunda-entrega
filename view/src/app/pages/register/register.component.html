@@ -1,0 +1,42 @@
+<div style="padding-top: 50px" class="container">
+  <h1 class="text-center">
+    Bienvenidos a educacion continua del TdeA
+  </h1>
+  <br>
+  <form class="splash-container">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="mb-1 text-center">Formulario de registro</h3>
+        <p class="text-center">Por favor ingresa tu infmoracion.</p>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <input class="form-control form-control-lg" type="text"  name="nombre" [(ngModel)]="nombre" required="true" placeholder="Nombre"
+            autocomplete="off">
+        </div>
+        <div class="form-group">
+          <input class="form-control form-control-lg" type="number" name="documento"  [(ngModel)]="documento" required="true" placeholder="Documento"
+            autocomplete="off">
+        </div>
+        <div class="form-group">
+          <input class="form-control form-control-lg" id="pass1" name="correo"  [(ngModel)]="correo"  type="text" required="true" placeholder="Correo">
+        </div>
+        <div class="form-group">
+          <input class="form-control form-control-lg" type="number" name="telefono"  [(ngModel)]="telefono"  required="true" placeholder="Telefono">
+        </div>
+        <div class="form-group pt-2">
+          <button class="btn btn-block btn-primary" (click)="ngSubmitUser()" type="submit">Registar mi cuenta</button>
+        </div>
+      </div>
+      <div *ngIf="messageResponse" class="alert alert-warning mr-3 ml-3" role="alert">
+        Rellena todos los campos
+      </div>
+      <div *ngIf="ErrorResponse" class="alert alert-warning mr-3 ml-3" role="alert">
+        Este usuario ya existe
+      </div>
+      <div class="card-footer bg-white text-center">
+        <p>Ya tienes cuenta? <a [routerLink]="['/login']" class="text-secondary">Inicia sesion.</a></p>
+      </div>
+    </div>
+  </form>
+</div>
